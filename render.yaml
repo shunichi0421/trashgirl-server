@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: trashgirl-server
+    env: python
+    buildCommand: ""
+    startCommand: "gunicorn app:app"
+    autoDeploy: true
+    envVars:
+      - key: KOMOJU_SECRET_KEY
+        sync: false

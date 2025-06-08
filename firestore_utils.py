@@ -1,10 +1,11 @@
 import os
 import firebase_admin
 from firebase_admin import credentials, firestore
+import json
 
-# Firebaseアプリの初期化（既に初期化されていない場合のみ）
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase-service-account.json")
+    cred_dict = json.loads(os.environ["FIREBASE_CREDENTIALS_JSON"])
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
